@@ -51,13 +51,6 @@ numpy==1.26.2
 tensorflow==2.14.0
 music21==9.1.0
 ```
-
-<div align="center">
-
-![gennhausser](/demo_images/gennhausser_logo.png)
-
-</div>
-
 <a href="https://cursed-entertainment.itch.io/" target="_blank">
     <img src="https://github.com/CursedPrograms/cursedentertainment/raw/main/images/logos/logo-wide-grey.png"
         alt="CursedEntertainment Logo" align="center">
