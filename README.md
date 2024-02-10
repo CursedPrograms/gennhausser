@@ -7,9 +7,9 @@
     <img alt="Flask" src="https://img.shields.io/badge/flask%20-%23323330.svg?&style=for-the-badge&logo=flask&logoColor=white"/>
 </div>
 
-# gennhausser
+# gennhausser project
 
-Music generation using a Long Short-Term Memory (LSTM) neural network. The project uses TensorFlow and music21 libraries to create a synthetic dataset, train an LSTM model, and generate music sequences.
+The gennhausser project is for music generation using a Long Short-Term Memory (LSTM) neural network. The gennhausser project uses TensorFlow and music21 libraries to create a synthetic dataset, train an LSTM model, and generate music sequences.
 
 ## How to Run:
 ```bash
