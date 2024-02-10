@@ -9,6 +9,8 @@
 
 # gennhausser
 
+Music generation using a Long Short-Term Memory (LSTM) neural network. The project uses TensorFlow and music21 libraries to create a synthetic dataset, train an LSTM model, and generate music sequences.
+
 ## How to Run:
 ```bash
 pip install -r requirements.txt
