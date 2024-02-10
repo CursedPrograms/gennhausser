@@ -14,14 +14,9 @@ def main():
 
     scripts = {
         "1": {
-            "name": "Run 'Script00'",
-            "description": "This is Script01",
-            "file_name": "scripts/script00.py"
-        },
-        "2": {
-            "name": "Run 'Script01",
-            "description": "This is Script01",
-            "file_name": "scripts/script01.py"
+            "name": "Run 'trainer.py'",
+            "description": "Run the gennhausser trainer",
+            "file_name": "scripts/trainer.py"
         },
         "00": {
             "name": "Run 'install_dependencies.py'",
