@@ -7,7 +7,13 @@
     <img alt="Flask" src="https://img.shields.io/badge/flask%20-%23323330.svg?&style=for-the-badge&logo=flask&logoColor=white"/>
 </div>
 
+
+
+<div align="center">
+
 ![gennhausser](/demo_images/gennhausser_logo_bg.png)
+
+</div>
 
 The gennhausser project is for music generation using a Long Short-Term Memory (LSTM) neural network. The gennhausser project uses TensorFlow and music21 libraries to create a synthetic dataset, train an LSTM model, and generate music sequences.
 
@@ -22,7 +28,11 @@ The gennhausser project is for music generation using a Long Short-Term Memory (
 - **transformer.py:** Runs gennhuasser trainer
 - **install_dependencies.py:** Install dependencies
 
+<div align="center">
+
 ![gennhausser](/demo_images/gennhausser_cover.png)
+
+</div>
 
 ## How to Run:
 ```bash
@@ -42,7 +52,11 @@ tensorflow==2.14.0
 music21==9.1.0
 ```
 
+<div align="center">
+
 ![gennhausser](/demo_images/gennhausser_logo.png)
+
+</div>
 
 <a href="https://cursed-entertainment.itch.io/" target="_blank">
     <img src="https://github.com/CursedPrograms/cursedentertainment/raw/main/images/logos/logo-wide-grey.png"
