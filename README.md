@@ -7,16 +7,13 @@
     <img alt="Flask" src="https://img.shields.io/badge/flask%20-%23323330.svg?&style=for-the-badge&logo=flask&logoColor=white"/>
 </div>
 
-
-
 <div align="center">
 
-![gennhausser](/demo_images/gennhausser_logo_bg.png)
+![gennhausser logo](https://github.com/CursedPrograms/gennhausser/blob/main/demo_images/gennhausser_logo_bg.png)
 
 </div>
 
 The gennhausser project is for music generation using a Long Short-Term Memory (LSTM) neural network. The gennhausser project uses TensorFlow and music21 libraries to create a synthetic dataset, train an LSTM model, and generate music sequences.
-
 
 ## Scripts:
 
@@ -30,7 +27,7 @@ The gennhausser project is for music generation using a Long Short-Term Memory (
 
 <div align="center">
 
-![gennhausser](/demo_images/gennhausser_cover.png)
+![gennhausser cover](https://github.com/CursedPrograms/gennhausser/blob/main/demo_images/gennhausser_cover.png)
 
 </div>
 
