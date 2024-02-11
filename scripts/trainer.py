@@ -5,6 +5,8 @@ from tensorflow.keras.layers import LSTM, Dense
 from music21 import stream, note, midi
 from datetime import datetime
 import json
+import tensorflow as tf
+from datetime import datetime
 
 def get_user_input():
     epochs = int(input("Enter the number of epochs: "))
@@ -13,11 +15,8 @@ def get_user_input():
     temperature = float(input("Enter the temperature for randomness: "))
     return epochs, batch_size, length, temperature
 
-# Assume 'dataset' is your generated or real music dataset
 with open('settings.json') as f:
     settings = json.load(f)
-
-# Prompt the user to decide whether to generate from settings or input the values manually
 generate_from_settings = input("Generate from settings.json? (y/n): ").lower() == 'y'
 
 if not generate_from_settings:
@@ -89,9 +88,6 @@ def build_model(input_shape, output_shape):
 dataset = generate_dataset()
 X, y = dataset['input'], dataset['output']
 
-# Get user input for the number of epochs and batch size if not provided in settings
-
-
 # Assume 'model' is your trained LSTM model
 # Make sure to replace 'input_shape' and 'output_shape' with the actual shapes from your dataset
 input_shape = X.shape[1:]
@@ -103,18 +99,27 @@ model = build_model(input_shape, output_shape)
 # Train the model
 model.fit(X, y, epochs=epochs, batch_size=batch_size)
 
+# Custom callback to save the model every 50 frames
+class SaveModelCallback(tf.keras.callbacks.Callback):
+    def on_epoch_end(self, epoch, logs=None):
+        if epoch % 50 == 0:
+            model_filename = f'output/trained_model_epoch_{epoch}.h5'
+            self.model.save(model_filename)
+            print(f'Model saved as {model_filename} at epoch {epoch}.')
+
+# Build the LSTM model
+model = build_model(input_shape, output_shape)
+
+# Train the model with the custom callback
+model.fit(X, y, epochs=epochs, batch_size=batch_size, callbacks=[SaveModelCallback()])
+
 # Save the trained model with a timestamp
 model_timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
 model.save(f'output/trained_model_{model_timestamp}.h5')
 
 # Load the saved model
 loaded_model = tf.keras.models.load_model(f'output/trained_model_{model_timestamp}.h5')
-
-# Example usage
-seed_sequence = X[np.random.randint(0, X.shape[0])]  # Use a random sequence from your dataset as a seed
-
-# Get user input for the length and temperature if not provided in settings
-
+seed_sequence = X[np.random.randint(0, X.shape[0])] 
 
 # Generate music with the loaded model
 generated_music_sequence = generate_music(loaded_model, seed_sequence, length=length, temperature=temperature)

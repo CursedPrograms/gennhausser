@@ -22,7 +22,7 @@ The gennhausser project is for music generation using a Long Short-Term Memory (
 
 ### /scripts/
 
-- **transformer.py:** Runs gennhuasser trainer
+- **trainer.py:** Runs gennhuasser trainer
 - **install_dependencies.py:** Install dependencies
 
 <div align="center">
