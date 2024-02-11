@@ -1,0 +1,6 @@
+{
+    "epochs": 50,
+    "batch_size": 64,
+    "length": 1000,
+    "temperature": 1.0
+  }
