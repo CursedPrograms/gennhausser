@@ -9,8 +9,11 @@
 
 <div align="center">
 
-![gennhausser logo](https://github.com/CursedPrograms/gennhausser/blob/main/demo_images/gennhausser_logo_bg.png)
-
+<div align="center">
+<a href="https://cursedprograms.github.io/gennhausser-pr/" target="_blank">
+    <img src="https://github.com/CursedPrograms/gennhausser/blob/main/demo_images/gennhausser_logo_bg.png"
+        alt="CursedGPT">
+</a>
 </div>
 
 The gennhausser project is for music generation using a Long Short-Term Memory (LSTM) neural network. The gennhausser project uses TensorFlow and music21 libraries to create a synthetic dataset, train an LSTM model, and generate music sequences.
@@ -27,7 +30,13 @@ The gennhausser project is for music generation using a Long Short-Term Memory (
 
 <div align="center">
 
-![gennhausser cover](https://github.com/CursedPrograms/gennhausser/blob/main/demo_images/gennhausser_cover.png)
+
+<div align="center">
+<a href="https://cursedprograms.github.io/gennhausser-pr/" target="_blank">
+    <img src="https://github.com/CursedPrograms/gennhausser/blob/main/demo_images/gennhausser_cover.png"
+        alt="CursedGPT">
+</a>
+</div>
 
 </div>
 
