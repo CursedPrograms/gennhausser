@@ -29,9 +29,6 @@ The gennhausser project is for music generation using a Long Short-Term Memory (
 - **install_dependencies.py:** Install dependencies
 
 <div align="center">
-
-
-<div align="center">
 <a href="https://cursedprograms.github.io/gennhausser-pr/" target="_blank">
     <img src="https://github.com/CursedPrograms/gennhausser/blob/main/demo_images/gennhausser_cover.png"
         alt="CursedGPT">
