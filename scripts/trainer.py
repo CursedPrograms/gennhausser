@@ -6,9 +6,27 @@ from music21 import stream, note, midi
 from datetime import datetime
 import json
 
+def get_user_input():
+    epochs = int(input("Enter the number of epochs: "))
+    batch_size = int(input("Enter the batch size: "))
+    length = int(input("Enter the length of the generated sequence: "))
+    temperature = float(input("Enter the temperature for randomness: "))
+    return epochs, batch_size, length, temperature
+
 # Assume 'dataset' is your generated or real music dataset
 with open('settings.json') as f:
     settings = json.load(f)
+
+# Prompt the user to decide whether to generate from settings or input the values manually
+generate_from_settings = input("Generate from settings.json? (y/n): ").lower() == 'y'
+
+if not generate_from_settings:
+    epochs, batch_size, length, temperature = get_user_input()
+else:
+    epochs = settings.get("epochs")
+    batch_size = settings.get("batch_size")
+    length = settings.get("length")
+    temperature = settings.get("temperature")
 
 # Function to generate a synthetic dataset
 def generate_dataset(num_samples=1000, sequence_length=50, num_classes=128):
@@ -76,8 +94,7 @@ dataset = generate_dataset()
 X, y = dataset['input'], dataset['output']
 
 # Get user input for the number of epochs and batch size if not provided in settings
-epochs = settings.get("epochs", int(input("Enter the number of epochs: ")))
-batch_size = settings.get("batch_size", int(input("Enter the batch size: ")))
+
 
 # Assume 'model' is your trained LSTM model
 # Make sure to replace 'input_shape' and 'output_shape' with the actual shapes from your dataset
@@ -101,8 +118,7 @@ loaded_model = tf.keras.models.load_model(f'output/trained_model_{model_timestam
 seed_sequence = X[np.random.randint(0, X.shape[0])]  # Use a random sequence from your dataset as a seed
 
 # Get user input for the length and temperature if not provided in settings
-length = settings.get("length", int(input("Enter the length of the generated sequence: ")))
-temperature = settings.get("temperature", float(input("Enter the temperature for randomness: ")))
+
 
 # Generate music with the loaded model
 generated_music_sequence = generate_music(loaded_model, seed_sequence, length=length, temperature=temperature)
