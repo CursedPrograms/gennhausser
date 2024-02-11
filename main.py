@@ -1,6 +1,7 @@
 import os
 import subprocess
 import json
+import sys
 
 def main():
     with open('config.json') as json_file:
@@ -26,6 +27,8 @@ def main():
     }
 
     current_script_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    python_version = sys.version_info[0]
 
     while True:
         print("\nAvailable Scripts:")
@@ -42,13 +45,16 @@ def main():
             script_file_name = selected_script["file_name"]
             script_file_path = os.path.join(current_script_dir, script_file_name)
             
-            if os.path.exists(script_file_path):
-                try:
-                    subprocess.run(["python", script_file_path])
-                except Exception as e:
-                    print(f"An error occurred while running the script: {e}")
-            else:
-                print(f"Script file '{script_file_name}' does not exist.")
+            try:
+                if os.path.exists(script_file_path) and python_version == 3:
+                        subprocess.run([f"python{python_version}", script_file_path])
+                elif os.path.exists(script_file_path) and python_version != 3:
+                        subprocess.run(["python", script_file_path])
+                else:
+                    print(f"Script file '{script_file_name}' does not exist.")
+            except Exception as e:
+                print(f"An error occurred while running the script: {e}")
+                          
         else:
             print("Invalid choice. Please select a valid script number.")
 
