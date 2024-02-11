@@ -47,10 +47,6 @@ def sequence_to_stream(sequence):
 def generate_music(model, seed_sequence, length=1000, temperature=1.0):
     generated_sequence = seed_sequence.copy()
 
-    # Get user input for the length and temperature
-    length = settings.get("length", input("Enter the length of the generated sequence: "))
-    temperature = settings.get("temperature", input("Enter the temperature for randomness (e.g., 0.5 for more randomness, 2.0 for less randomness): "))
-
     for _ in range(length):
         # Predict the next set of notes
         next_notes_prob = model.predict(np.expand_dims(generated_sequence, axis=0))
