@@ -14,7 +14,7 @@
 </a>
 </div>
 
-The gennhausser project is for music generation using a Long Short-Term Memory (LSTM) neural network. The gennhausser project uses TensorFlow and music21 libraries to create a synthetic dataset, train an LSTM model, and generate music sequences.
+The gennhausser project is for music generation using a Long Short-Term Memory (LSTM) neural network. The gennhausser project uses TensorFlow and music21 libraries to create a synthetic dataset, train an LSTM model, and generate MIDI sequences.
 
 ## Scripts:
 
@@ -31,8 +31,6 @@ The gennhausser project is for music generation using a Long Short-Term Memory (
     <img src="https://github.com/CursedPrograms/gennhausser/blob/main/demo_images/gennhausser_cover.png"
         alt="CursedGPT">
 </a>
-</div>
-
 </div>
 
 ## How to Run:

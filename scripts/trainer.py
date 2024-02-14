@@ -5,9 +5,15 @@ from tensorflow.keras.layers import LSTM, Dense
 from music21 import stream, note, midi
 from datetime import datetime
 import json
-import tensorflow as tf
-from datetime import datetime
+import os
 
+# Paths
+SETTINGS_PATH = 'settings.json'
+OUTPUT_MODEL_DIR = 'output/models'
+OUTPUT_MIDI_DIR = 'output/midi'
+FINAL_MODELS_DIR = 'output/final_models'
+
+# Function to get user input
 def get_user_input():
     try:
         epochs = int(input("Enter the number of epochs: "))
@@ -19,11 +25,13 @@ def get_user_input():
         print("Invalid input. Please enter valid numeric values.")
         return get_user_input()
 
-with open('settings.json') as f:
+# Load settings from JSON
+with open(SETTINGS_PATH) as f:
     settings = json.load(f)
 
 generate_from_settings = input("Generate from settings.json? (y/n): ").lower() == 'y'
 
+# Get user input or use settings from JSON
 if not generate_from_settings:
     epochs, batch_size, length, temperature = get_user_input()
 else:
@@ -101,39 +109,37 @@ output_shape = y.shape[1]
 # Build the LSTM model
 model = build_model(input_shape, output_shape)
 
+# Callback to save model
+# Define the function to generate music using the trained model
+def generate_and_save_music(model, length, temperature, output_dir):
+    seed_sequence = X[np.random.randint(0, X.shape[0])]
+    generated_music_sequence = generate_music(model, seed_sequence, length=length, temperature=temperature)
+    generated_music_stream = sequence_to_stream(generated_music_sequence)
+    midi_filename = save_to_midi(generated_music_stream, f'{output_dir}/generated_output')
+    print(f'Generated music saved to: {midi_filename}')
+
+# Define the callback class
 class SaveModelCallback(tf.keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs=None):
         if epoch % 10 == 0:
-            model_filename = f'output/models/trained_model_epoch_{epoch}.keras'
+            os.makedirs(OUTPUT_MODEL_DIR, exist_ok=True) 
+            model_filename = f'{OUTPUT_MODEL_DIR}/trained_model_epoch_{epoch}.keras'
             self.model.save(model_filename)
             print(f'Model saved as {model_filename} at epoch {epoch}.')
 
             # Load the saved model
             loaded_model = tf.keras.models.load_model(model_filename)
 
-            # Generate music with the loaded model
-            seed_sequence = X[np.random.randint(0, X.shape[0])]
-            generated_music_sequence = generate_music(loaded_model, seed_sequence, length=length, temperature=temperature)
+            # Generate and save music with the loaded model
+            generate_and_save_music(loaded_model, length, temperature, OUTPUT_MIDI_DIR)
 
-            # Convert the generated sequence to a music21 stream for visualization
-            generated_music_stream = sequence_to_stream(generated_music_sequence)
-
-            # Save the generated music to a MIDI file with a timestamp
-            midi_filename = save_to_midi(generated_music_stream, 'output/midi/generated_output')
-            print(f'Generated music saved to: {midi_filename}')
-
+# Train the model
 model.fit(X, y, epochs=epochs, batch_size=batch_size, callbacks=[SaveModelCallback()])
 
 # Save the trained model with a timestamp
 model_timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
-model.save(f'output/final_models/trained_model_{model_timestamp}.keras')
+model.save(f'{FINAL_MODELS_DIR}/trained_model_{model_timestamp}.keras')
+print(f'Model saved as {FINAL_MODELS_DIR}/trained_model_{model_timestamp}.keras.')
+loaded_model = tf.keras.models.load_model(f'{FINAL_MODELS_DIR}/trained_model_{model_timestamp}.keras')
+generate_and_save_music(loaded_model, length, temperature, OUTPUT_MIDI_DIR)
 
-# Load the saved model
-loaded_model = tf.keras.models.load_model(f'output/trained_model_{model_timestamp}.keras')
-seed_sequence = X[np.random.randint(0, X.shape[0])] 
-
-# Generate music with the loaded model
-generated_music_sequence = generate_music(loaded_model, seed_sequence, length=length, temperature=temperature)
-generated_music_stream = sequence_to_stream(generated_music_sequence)
-midi_filename = save_to_midi(generated_music_stream, 'output/midi/generated_output')
-print(f'Generated music saved to: {midi_filename}')
