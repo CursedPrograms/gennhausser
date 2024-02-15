@@ -1,9 +1,0 @@
-<TemplateProjectConfig>
-    <AppName>gennhausser</AppName>
-    <Description></Description>
-    <ProjectStructure>
-        <MainScript>main.py</MainScript>
-        <TransformerScript>scripts/install-dependencies.py</TransformerScript>
-    </ProjectStructure>
-    <Scripts></Scripts>
-</TemplateProjectConfig>
