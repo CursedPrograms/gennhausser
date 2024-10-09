@@ -14,16 +14,18 @@
     <img alt="TensorFlow" src="https://img.shields.io/badge/tensorflow%20-%23323330.svg?&style=for-the-badge&logo=tensorflow&logoColor=white"/>
     <img alt="Flask" src="https://img.shields.io/badge/flask%20-%23323330.svg?&style=for-the-badge&logo=flask&logoColor=white"/>
 </div>
-
+  <br>
 <div align="center">
 <a href="https://cursedprograms.github.io/gennhausser-pr/" target="_blank">
     <img src="https://github.com/CursedPrograms/gennhausser/blob/main/demo_images/gennhausser_logo_bg.png"
         alt="CursedGPT">
 </a>
 </div>
-
+  <br>
+  
 The gennhausser project is for music generation using a Long Short-Term Memory (LSTM) neural network. The gennhausser project uses TensorFlow and music21 libraries to create a synthetic dataset, train an LSTM model, and generate MIDI sequences.
 
+  <br>
 ## Scripts:
 
 - **main.py:** The selection menu for gennhuasser
