@@ -47,23 +47,39 @@ The gennhausser project is for music generation using a Long Short-Term Memory (
 </div>
 
 ## How to Run:
+
+### Install Requirements
+
+Using Python directly:
+
 ```bash
 pip install -r requirements.txt
 ```
+Or run: 
+- `install_requirements.bat`
+
+  
+  <br>
+
+### Run main.py
+
+Using Python directly:
+
 ```bash
 python main.py
 ```
-To make the setup script executable, run the following command in your terminal:
 
-```bash
-chmod +x setup.sh
-```
-```bash
-numpy==1.26.2
-tensorflow==2.14.0
-music21==9.1.0
-```
-<br>
+Using provided scripts:
+
+Windows:
+- `.\run.bat`
+or
+- `.\run.ps1`
+
+Unix-like systems (Linux/macOS):
+- `.\run.sh`
+
+  <br>
 <div align="center">
 <a href="https://github.com/SynthWomb" target="_blank" align="center">
     <img src="https://github.com/SynthWomb/synth.womb/blob/main/logos/synthwomb07.png"
